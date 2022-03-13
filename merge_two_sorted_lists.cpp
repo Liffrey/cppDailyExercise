@@ -32,19 +32,19 @@
 #include <vector>
 using namespace std;
 
-// struct ListNode
-// {
-//     int val;
-//     ListNode *next;
-//     ListNode() : val(0), next(nullptr) {}
-//     ListNode(int x) : val(x), next(nullptr) {}
-//     ListNode(int x, ListNode *next) : val(x), next(next) {}
-// };
 struct ListNode
 {
   int val;
   ListNode *next;
+  ListNode() : val(0), next(nullptr) {}
+  ListNode(int x) : val(x), next(nullptr) {}
+  ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
+// struct ListNode
+// {
+//   int val;
+//   ListNode *next;
+// };
 
 struct LinkedList
 {
@@ -118,18 +118,75 @@ struct LinkedList
   }
   void insert()
   {
-
   }
-  void updateValue()
+  void updateValue(int node, const int &value)
   {
-    
+    // hangi node için node değeri update olacak
+    ListNode *pCurrentNode = head;
+    // talep edilen değere kadar gidilecek,
+    // edge case listeden büyük değerler için if exception yapılacak
+    for (int i = 0; i < node; i++)
+    {
+      pCurrentNode = pCurrentNode->next;
+    }
+    pCurrentNode->val = value;
   }
 };
 
-// ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
-// {
-
-// }
+ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
+{
+  // listlerin boş olma durumları için edge caseler
+  if (list1 == NULL)
+    return list2;
+  if (list2 == NULL)
+    return list1;
+  ListNode *head;
+  ListNode *temp;
+  // hangi list nodedun ilk elemani daha kücükse head o node ile başlayacak
+  if (list1->val < list2->val)
+  {
+    temp = list1;
+    head = list1;
+    list1 = list1->next;
+  }
+  else
+  {
+    temp = list2;
+    head = list2;
+    list2 = list2->next;
+  }
+  // eğer iki listte boş değilse
+  while (list1 != NULL && list2 != NULL)
+  {
+    // list1 değerinin list2 den küçük olması durumu için
+    if (list1->val < list2->val)
+    {
+      temp->next = list1;
+      list1 = list1->next;
+    }
+    // list1 değerinin list2 den büyük olması durumu için
+    else
+    {
+      temp->next = list2;
+      list2 = list2->next;
+    }
+    temp = temp->next;
+  }
+  // listede kalan diğer elemanlar için
+  while (list1 != NULL)
+  {
+    temp->next = list1;
+    list1 = list1->next;
+    temp = temp->next;
+  }
+  while (list2 != NULL)
+  {
+    temp->next = list2;
+    list2 = list2->next;
+    temp = temp->next;
+  }
+  return head;
+}
 
 int main()
 {
@@ -141,22 +198,25 @@ int main()
   LinkedList a;
 
   // a.printList();
-  a.add(5); //
+  // a.add(5); //
+  // // a.printList();
+  // a.add(4);
+  // // a.printList();
+  // a.add(2);
   // a.printList();
-  a.add(4);
+  // // a.printList();
+  // // a.get(0); // 4 print out yapacak
+  // // a.get(1);
+  // // a.get(2);
+  // // a.get(3);
+  // a.del(1);
   // a.printList();
-  a.add(2);
-  a.printList();
+
+  // a.updateValue(1, 500);
   // a.printList();
-  // a.get(0); // 4 print out yapacak
-  // a.get(1);
-  // a.get(2);
-  // a.get(3);
-  a.del(1);
-  a.printList();
   // for (int i = 0; i < test.size(); i++)
   // {
-  //   output = mergeTwoLists(test[i],test2[i]);
+  // mergeTwoLists();
   //   cout << "sonuc= " << output << " ------- "
   //        << "beklenen= " << beklenen[i] << endl;
   // }
