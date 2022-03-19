@@ -33,12 +33,6 @@ using namespace std;
         vector<int> result;
         map<char, int> roman;
         int r=0;
-        // roman.insert(pair<string,int>("IV",4));
-        // roman.insert(pair<string,int>("IX",9));
-        // roman.insert(pair<string,int>("XL",40));
-        // roman.insert(pair<string,int>("XC",90));
-        // roman.insert(pair<string,int>("CD",400));
-        // roman.insert(pair<string,int>("CM",900));
         roman.insert(pair<char,int>('I',1));
         roman.insert(pair<char,int>('V',5));
         roman.insert(pair<char,int>('X',10));
@@ -60,18 +54,6 @@ using namespace std;
         r += roman[s[i]];
         }
         return r;
-        //     string s_new = string(1,s[i]);
-        //     cout<<s_new<<endl;
-        //     if ( roman.find(s_new) == roman.end() ) {
-        //     // not found
-        //         return -1;
-        //     } else {
-        //      // found
-        //     result.push_back(roman.at(s_new));
-        //     }
-        // }
-        // cout<<accumulate(result.begin(),result.end(),0)<<endl;
-        // return r;
     }
 
 int main()

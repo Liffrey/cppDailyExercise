@@ -1,4 +1,5 @@
 //! template version 1.1
+//https://leetcode.com/problems/merge-two-sorted-lists/submissions/
 // You are given the heads of two sorted linked lists list1 and list2.
 
 // Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
@@ -116,8 +117,9 @@ struct LinkedList
     }
     cout << endl;
   }
-  void insert()
+  void insert(int node, const int &value)
   {
+
   }
   void updateValue(int node, const int &value)
   {
