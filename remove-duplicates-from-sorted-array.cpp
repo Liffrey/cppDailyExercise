@@ -38,12 +38,12 @@
 
 // level:easy
 
-// iter 1. i=0 counter=0 k=1 enbüyük = 0 karsilastirma = 0 - 0 ------> 0 0 1 1 1 2 
+// iter 1. i=0 counter=0 k=1 enbüyük = 0 karsilastirma = 0 - 0 ------> 0 0 1 1 1 2
 // iter 2. i=1 counter=0 k=1 enbüyük = 0 karsilastirma = 0 - 0 ------> 0 0 1 1 1 2
 // iter 3. i=2 counter=1 k=2 enbüyük = 1 karsilastirma = 0 - 1 ------> 0 (1) 1 1 1 2
 // iter 4. i=3 counter=1 k=2 enbüyük = 1 karsilastirma = 1 - 1 ------> 0 1 1 1 1 2
-// iter 5. i=4 counter=1 k=2 enbüyük = 1 karsilastirma = 1 - 1 ------> 0 1 1 1 1 2 
-// iter 6. i=5 counter=2 k=3 enbüyük = 2 karsilastirma = 1 - 2 ------> 0 1 (2) 1 1 2 
+// iter 5. i=4 counter=1 k=2 enbüyük = 1 karsilastirma = 1 - 1 ------> 0 1 1 1 1 2
+// iter 6. i=5 counter=2 k=3 enbüyük = 2 karsilastirma = 1 - 2 ------> 0 1 (2) 1 1 2
 
 #include <iostream>
 #include <vector>
@@ -53,50 +53,47 @@ int removeDuplicates(vector<int> &nums)
 {
     int counter = 0;
     int biggest = nums[0];
-    
-    for(int i=0;i<nums.size();i++)
+
+    for (int i = 0; i < nums.size(); i++)
     {
-        if(nums[i]>biggest)
+        if (nums[i] > biggest)
         {
-        biggest=nums[i];
-        counter++;
-        nums[counter]=biggest;
+            biggest = nums[i];
+            counter++;
+            nums[counter] = biggest;
         }
     }
-    return counter+1;
+    return counter + 1;
 }
 
 int main()
 {
-    int output=0;
+    int output = 0;
     vector<int> beklenen{1, 3, 4, 6, 7, 8, 8, 8};
     vector<int> test{1, 3, 4, 6, 6, 7, 8, 8};
     int k = removeDuplicates(test);
-    cout<<k;
+    cout << k;
     return 0;
 }
 
-
-
-
-    // vector<int> uniq_element;
-    // for(int i=0;i<nums.size();i++)
-    // {
-    //     isUnique = true;
-    //     for(int j=0;j<uniq_element.size();j++)
-    //         {
-    //             if(nums[i]==uniq_element[j])
-    //             {
-    //                 isUnique = false;
-    //                 break;   
-    //             }
-    //         }  
-    //         if(isUnique)
-    //         {
-    //             uniq_element.push_back(nums[i]);
-    //         }
-    // }
-    // for (int i=0;i<uniq_element.size();i++)
-    // {
-    //     cout<<uniq_element[i]<<" ";
-    // }
+// vector<int> uniq_element;
+// for(int i=0;i<nums.size();i++)
+// {
+//     isUnique = true;
+//     for(int j=0;j<uniq_element.size();j++)
+//         {
+//             if(nums[i]==uniq_element[j])
+//             {
+//                 isUnique = false;
+//                 break;
+//             }
+//         }
+//         if(isUnique)
+//         {
+//             uniq_element.push_back(nums[i]);
+//         }
+// }
+// for (int i=0;i<uniq_element.size();i++)
+// {
+//     cout<<uniq_element[i]<<" ";
+// }
