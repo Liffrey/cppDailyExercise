@@ -64,29 +64,28 @@ int strStr(string haystack, string needle)
         //      if: ilk karakter eşleşmişse  // aaaaa : bb , // hello : la  // "helallo", "ll"
         if (needle[0] == haystack[i])
         {
-            //          for: eşlekme olduktan sonraki karakterler arasında needle'ın boyu kadar ara
+            //for: eşleşme olduktan sonraki karakterler arasında needle'ın boyu kadar ara
             for (int j = i + 1, k = 1; k < needle.length(); j++, k++)
             {
                 //  if: needle'ın geri kalan tüm karakterleri haystack'ın içinde var mı?
+                // hello - ll --> lo - l 
+                // mississippi - sippi 
+                // mississippi - sippi  *  i=2, j=3, k=1
+                // 01234567890 - 01234
+
+                // mississippi - sippi  *  i=3, j=4, k=2
+                // 01234567890 - 01234
+                //    *-/
                 
+                // mississippi - sippi  *  i=5, j=6, k=1
+                // 01234567890 - 01234
+                //      */
                 if (needle[k] != haystack[j])
                 {
                     fullMatch = false;
-                    // tekrar needle'in ilk karakteri ile karşılasıyorsa oradan oraya kadar atla
-                    cout << i << "--->";
-                    if (needle[0] == haystack[j])
-                    {
-                        i += (k - 1);
-                        cout << "test" << endl;
-                    }
-                    else
-                    {
-                        i += k;
-                    }
-                    // değilse karakter boyu kadar atla
-                    // i += min(k, findSecond(needle));
-                    cout << i << endl;
-                    break;
+                    cout<<"k="<<k<<" "<<"j="<<j<<" "<<"i="<<i<<endl;
+                    i += min(k, findSecond(needle));
+                    cout<<"artacak i= "<<i<<endl;
                 }
             }
             // if: needle var ise sonucu dön
@@ -108,11 +107,8 @@ int main()
     // cout << strStr("helallo", "lllllllll") << "-->-1" << endl;
     // cout << strStr("", "") << "-->0" << endl;
     // cout << strStr("looloooloolloo", "ollo") << "-->9" << endl;
-    cout << strStr("mississippi", "issip") << " --> 4" << endl;
-    // cout << strStr("mississippi", "ssip") << " --> 5" << endl;
+    //cout << strStr("mississippi", "issip") << " --> 4" << endl;
+    cout << strStr("mississippi", "sippi") << " --> 6" << endl;
     // cout << strStr("huseyihuseyihuseyin husey", "ihuseyin") << " --> 11" << endl;
-    // cout << strStr("pamississipastpastaaspassimississippi", "pasdasdppadasdads") << "-->4" << endl;
-
-    // cout << strStr("bugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaaabugraaaaaaaaaaaaaaaaaaaaae", "bugraaaaaaaaaaaaaaaaaaaaae") << "-->370" << endl;
     return 0;
 }
