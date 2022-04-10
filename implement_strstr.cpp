@@ -24,6 +24,21 @@
 
 // level:easy
 
+// hay stringteki her karakter için (:i) for loop
+// aranan stringte ilk karater eşleşir ise
+// aranan stringteki diğer karakter için (:k) for loop
+// eşleşme durumunda
+// diğer karakterlerin eşleşme durumunu aramaya devam edilir
+// eşleşmeme durumunda
+// i:hay stringteki konumumuz
+// j:hay stringteki ilk eşlemeden sonraki takip indexi
+// k:needlein ilk eşleşmeden sonraki takip indexi
+// step 1: aranan stringin uzunluğu kadar atla
+// step 2: aranan kelimenin ilk karakteri input stringte tekrar karşılaşıncaya kadar atla
+//
+//
+//
+
 #include <string>
 #include <iostream>
 #include <vector>
@@ -64,28 +79,19 @@ int strStr(string haystack, string needle)
         //      if: ilk karakter eşleşmişse  // aaaaa : bb , // hello : la  // "helallo", "ll"
         if (needle[0] == haystack[i])
         {
-            //for: eşleşme olduktan sonraki karakterler arasında needle'ın boyu kadar ara
+            // for: eşleşme olduktan sonraki karakterler arasında needle'ın boyu kadar ara
             for (int j = i + 1, k = 1; k < needle.length(); j++, k++)
             {
-                //  if: needle'ın geri kalan tüm karakterleri haystack'ın içinde var mı?
-                // hello - ll --> lo - l 
-                // mississippi - sippi 
-                // mississippi - sippi  *  i=2, j=3, k=1
-                // 01234567890 - 01234
-
-                // mississippi - sippi  *  i=3, j=4, k=2
-                // 01234567890 - 01234
-                //    *-/
-                
-                // mississippi - sippi  *  i=5, j=6, k=1
-                // 01234567890 - 01234
-                //      */
+ 
                 if (needle[k] != haystack[j])
                 {
                     fullMatch = false;
-                    cout<<"k="<<k<<" "<<"j="<<j<<" "<<"i="<<i<<endl;
-                    i += min(k, findSecond(needle));
-                    cout<<"artacak i= "<<i<<endl;
+                    cout << "i=" << i << " "
+                         << "j=" << j << " "
+                         << "k=" << k << endl;
+                    i += min(k-1, findSecond(needle)-1);
+                    cout << "artacak i= " << i << endl;
+                    break;
                 }
             }
             // if: needle var ise sonucu dön
@@ -107,8 +113,11 @@ int main()
     // cout << strStr("helallo", "lllllllll") << "-->-1" << endl;
     // cout << strStr("", "") << "-->0" << endl;
     // cout << strStr("looloooloolloo", "ollo") << "-->9" << endl;
-    //cout << strStr("mississippi", "issip") << " --> 4" << endl;
+    // cout << strStr("mississippi", "issip") << " --> 4" << endl;
     cout << strStr("mississippi", "sippi") << " --> 6" << endl;
+    cout << strStr("mississippi", "issip") << " --> 4" << endl;
+    cout << strStr("mississippii", "sippi") << " --> 6" << endl;
     // cout << strStr("huseyihuseyihuseyin husey", "ihuseyin") << " --> 11" << endl;
     return 0;
 }
+
