@@ -31,93 +31,105 @@
 
 // level:easy
 
-// arrayin 0 inci elemanını bir arttır.
+// arrayin N inci elemanını bir arttır.
 
-// eğer 0. eleman 9 ise o elemanı 0 yap +1. elemanı 1 yap.
+// eğer N. eleman 9 ise o elemanı 0 yap +1. elemanı 1 yap.
 
 // eğer bu durum +1. eleman içinde geçerliyse son elemana kadar bunu yap.
+
+// eğer son rakam 9 dan küçük bir sayı ise 1 ile toplanır 
+// eğer son rakam 9 dan ise bir ile toplanır elde 1 olur bu sayı bir soldaki rakamla toplanır. 
+// eğer bir soldaki rakamda 9 ise bu işlem soldaki sayı 9 olmayana devam eder. 
+//  9999 
+//     1
+//------
+//     0  +1
+//    00  +1
+//   000  +1
+// 10000
+
+// 1234
+//    1
+//-----
+// 1235
+
+//    9
+//    1
+//-----
+//   10
+
+// 7899
+//    1
+//-----
+//    0 +1
+//   00 +1
+//  900
+// 7900
+
+// 7989
+//    1
+//-----
+//    0 +1
+//   90 +1
+//  990
+// 7990
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-
-vector<int> plusOne(vector<int> &digits)
+vector<int> plusOne(vector<int>& digits)
 {
-    int N = digits.size();
-    // eğer 0. eleman 9 dan farklı bir rakamsa,
-    if (digits[N] != 9)
-    {
-        // arrayin 0. elemanını bir atttır.
-        cout << "9danfarkliysaif" << endl;
-        cout << N << endl;
-        digits[N] = digits[N] + 1;
-        return digits;
-    }
-    // eğer 0. eleman 9 ise o elemanı 0 yap +1. elemanı 1 yap.
-    // eğer bu durum +1. eleman içinde geçerliyse son elemana kadar bunu yap.
-    else
-    {
-        int i = 0;
-        while (digits[N] == 9)
-        {
-            digits[N] = 0;
-            i--;
-        }
-        // son eleman i. eleman değilse
-        if (digits[0] != i)
-        {
-            digits[i - 1] = digits[i - 1] + 1;
-            cout << "iftest" << endl;
-        }
-        else
-        {
-            digits[digits.size()] = 0;
-            digits.push_back(1);
-        }
-        return digits;
-    }
+	int i = digits.size() - 1;
+
+	while (i >= 0)
+	{
+		digits[i] += 1;
+		if (digits[i] == 10)
+		{
+			digits[i] = 0;
+			//digits[i - 1] += 1;
+			i--;
+		}
+		else
+		{
+			return digits; //10000, 9000
+		}
+	}
+	if (digits[0] == 0)
+	{
+		digits.insert(digits.begin(), 1);
+	}
+	return digits;
 }
 
 int main()
 {
-    vector<int> result;
-    vector<int> test1{9, 9, 9, 9};
-    vector<int> test2{1, 4};
-    vector<int> test3{3};
-    for (int i = 0; i <= test3.size(); i++)
-    {
-        cout << test3[i];
-    }
-    cout << endl;
-    result = plusOne(test3);
-    for (int i = 0; i <= result.size(); i++)
-    {
-        cout << result[i];
-    }
-    return 0;
+	vector<int> result;
+	vector<int> test1 = { 9, 9, 9, 9 };
+	vector<int> test2 = { 1, 4 };
+	vector<int> test3 = { 3 };
+	vector<int> test4 = { 9 };
+	vector<int> test5 = { 0 };
+
+
+	vector<vector<int>> tests = { test1, test2, test3, test4, test5 };
+	for (vector<int>& test : tests)
+	{
+		cout << "input:	";
+
+		for (int i = 0; i < test.size(); i++)
+		{
+			cout << test[i];
+		}
+		
+		result = plusOne(test);
+		cout << "	result: ";
+		for (int i = 0; i < result.size(); i++)
+		{
+			cout << result[i];
+		}
+		cout << endl;
+	}
+	return 0;
 }
-
-// for (int i = 0; i < digits.size(); i++)
-// {
-//     // i. karakter 9 mu diye kontrol et.
-//     if (digits[i] == 9)
-//     {
-//         // 9876543210 -> kaçıncı karakter
-//         // 9999999999 -> sayı
-//         //         +1
-//         //          0 ->
-//         // 9999999990 -> iter 1
-//         // 9999999900 -> iter 2
-//         //     .
-//         //     .
-//         // 9000000000 -> iter n-1
-//         // 10000000000 -> iter n
-//         digits[i] = 0;
-//     }
-//     if (digits[i + 1] != 9)
-//         (
-//             digits[i + 1]++) if (digits[digits.size()] == 9)(
-
-//         )
-// }

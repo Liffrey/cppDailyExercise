@@ -44,7 +44,7 @@
 #include <vector>
 using namespace std;
 
-int findSecond(string s)
+int findSecond(string &s)
 {
     int secondOccurance = 0;
     for (int i = 1; i < s.length(); i++)
@@ -82,15 +82,11 @@ int strStr(string haystack, string needle)
             // for: eşleşme olduktan sonraki karakterler arasında needle'ın boyu kadar ara
             for (int j = i + 1, k = 1; k < needle.length(); j++, k++)
             {
- 
+
                 if (needle[k] != haystack[j])
                 {
                     fullMatch = false;
-                    cout << "i=" << i << " "
-                         << "j=" << j << " "
-                         << "k=" << k << endl;
-                    i += min(k-1, findSecond(needle)-1);
-                    cout << "artacak i= " << i << endl;
+                    i += min(k - 1, findSecond(needle) - 1);
                     break;
                 }
             }
@@ -120,4 +116,3 @@ int main()
     // cout << strStr("huseyihuseyihuseyin husey", "ihuseyin") << " --> 11" << endl;
     return 0;
 }
-
