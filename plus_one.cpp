@@ -88,12 +88,11 @@ vector<int> plusOne(vector<int>& digits)
 		if (digits[i] == 10)
 		{
 			digits[i] = 0;
-			//digits[i - 1] += 1;
 			i--;
 		}
 		else
 		{
-			return digits; //10000, 9000
+			return digits;
 		}
 	}
 	if (digits[0] == 0)
