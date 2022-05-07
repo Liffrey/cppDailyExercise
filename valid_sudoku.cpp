@@ -204,34 +204,5 @@ int main()
 
     result = isValidSudoku(test1);
     cout << result;
-    // for (int i = 0; i < result.size(); i++)
-    // {
-    //     for (int j = 0; j < result[0].size(); j++)
-    //     {
-    //         cout << result[i][j];
-    //         cout << " ";
-    //     }
-    //     cout << endl;
-    // }
-    // vector<int> test2 = {3, 2};
-    // vector<int> test3 = {3, 3};
-    // vector<int> targets = {9,6,6};
-    // vector<vector<int>> tests = {test1, test2, test3};
-    // for (vector<int> &test : tests)
-    // {
-    //     cout << "input:	";
-
-    //     for (int i = 0; i < test.size(); i++)
-    //     {
-    //         cout << test[i];
-    //         result = matrixReshape();
-    //     }
-    //     cout << "	result: ";
-    //     for (int i = 0; i < result.size(); i++)
-    //     {
-    //         cout << result[i];
-    //     }
-    //     cout << endl;
-    // }
     return 0;
 }
