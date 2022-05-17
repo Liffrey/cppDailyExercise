@@ -27,7 +27,24 @@ using namespace std;
 
 bool isAnagram(string s, string t)
 {
-    
+    unordered_map<char, int> map;
+    if (s.size() == t.size())
+    {
+        for (int i = 0; i < s.size(); i++)
+        {
+            map[s[i]]++;
+        }
+        for (int j = 0; j < t.size(); j++)
+        {
+            if (map[t[j]] <= 0)
+            {
+                return false;
+            }
+            map[t[j]]--;
+        }
+        return true;
+    }
+    else return false;
 }
 
 int main()

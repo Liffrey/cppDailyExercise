@@ -43,7 +43,6 @@ bool canConstruct(string ransomNote, string magazine)
     // map içerisine yerleştirilen karakterler ransomNote içerisinde kullanıldıkca azatılacak
     for (int j = 0; j < ransomNote.size(); j++)
     {
-        char c = ransomNote[j];
         if (map[ransomNote[j]] <= 0)
         {
             return false;
