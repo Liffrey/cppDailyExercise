@@ -1,71 +1,71 @@
-#include <iostream>
-#include <array>
-using namespace std;
+// #include <iostream>
+// #include <array>
+// using namespace std;
 
-#define HASH_MAP_SIZE 1'000'000
-class MyHashSet
-{
-private:
-    int rows[HASH_MAP_SIZE];
-    int hash(int key)
-    {
-        return key % HASH_MAP_SIZE;
-    }
+// #define HASH_MAP_SIZE 1'000'000
+// class MyHashSet
+// {
+// private:
+//     int rows[HASH_MAP_SIZE];
+//     int hash(int key)
+//     {
+//         return key % HASH_MAP_SIZE;
+//     }
 
-public:
-    MyHashSet()
-    {
-        for (int i = 0; i < HASH_MAP_SIZE; i++)
-        {
-            rows[i] = -1;
-        }
-    }
+// public:
+//     MyHashSet()
+//     {
+//         for (int i = 0; i < HASH_MAP_SIZE; i++)
+//         {
+//             rows[i] = -1;
+//         }
+//     }
 
-    void add(int key)
-    {
-        int index = hash(key);
-        // eğer row boş ise hashlenen keyi o row'a ekle
-        if (rows[index] == -1)
-        {
-            rows[index] = key;
-        }
-        // eğer satır boş değilse o satıra diğer elemanı ekle
-        // else
-    }
+//     void add(int key)
+//     {
+//         int index = hash(key);
+//         // eğer row boş ise hashlenen keyi o row'a ekle
+//         if (rows[index] == -1)
+//         {
+//             rows[index] = key;
+//         }
+//         // eğer satır boş değilse o satıra diğer elemanı ekle
+//         // else
+//     }
 
-    void remove(int key)
-    {
-        int index = hash(key);
+//     void remove(int key)
+//     {
+//         int index = hash(key);
 
-        if (rows[index] != -1)
-        {
-            rows[index] = -1;
-        }
-    }
+//         if (rows[index] != -1)
+//         {
+//             rows[index] = -1;
+//         }
+//     }
 
-    bool contains(int key)
-    {
-        //for (int i = 0; i < HASH_MAP_SIZE; i++)
-        //{
-        int index = hash(key);
-        if (rows[index] == key)
-            return true;
-        // }
-        return false;
-    }
-};
-int main()
-{
-    MyHashSet *obj = new MyHashSet();
-    obj->add(5);
-    bool result = obj->contains(5);
-    cout << result << endl;
-    obj->remove (5);
-    result = obj->contains(5);
-    cout << result << endl;
-    delete obj;
-    return 0;
-}
+//     bool contains(int key)
+//     {
+//         //for (int i = 0; i < HASH_MAP_SIZE; i++)
+//         //{
+//         int index = hash(key);
+//         if (rows[index] == key)
+//             return true;
+//         // }
+//         return false;
+//     }
+// };
+// int main()
+// {
+//     MyHashSet *obj = new MyHashSet();
+//     obj->add(5);
+//     bool result = obj->contains(5);
+//     cout << result << endl;
+//     obj->remove (5);
+//     result = obj->contains(5);
+//     cout << result << endl;
+//     delete obj;
+//     return 0;
+// }
 
 
 
