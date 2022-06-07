@@ -50,12 +50,14 @@ struct ListNode
 {
     int val;
     ListNode *next;
+    ListNode *prev;
     ListNode() : val(0), next(NULL) {}
     ListNode(int x) : val(x), next(NULL) {}
 };
 struct LinkedList
 {
     ListNode *head = NULL;
+
     void add(int const &val)
     {
         ListNode *pNewNode = new ListNode;
@@ -111,7 +113,7 @@ struct LinkedList
         }
     }
 
-    void updateValue(int x, int &val)
+    void updateValue(int x, const int &val)
     {
         ListNode *pCurrentNode = head;
         if (pCurrentNode != NULL)
@@ -124,18 +126,19 @@ struct LinkedList
         }
     }
 
-    void insertNode(int x, int &val)
+    void insertNode(int x, const int &val)
     {
-        
+
         ListNode *pCurrentNode = head;
         ListNode *pNewNode = new ListNode;
-        pNewNode->val=val;
-        ListNode *pTempNode = new ListNode;
+        pNewNode->val = val;
+        // ListNode *pTempNode = new ListNode;
         for (int i = 0; i < x - 1; i++)
         {
             pCurrentNode->next = pCurrentNode;
         }
-        
+        pNewNode->next = pCurrentNode->next;
+        pCurrentNode->next = pNewNode;
     }
 
     void printList()
@@ -145,7 +148,7 @@ struct LinkedList
         {
             while (pCurrentNode != NULL)
             {
-                cout << pCurrentNode->val << " ";
+                cout << pCurrentNode->val <<" - ";
                 pCurrentNode = pCurrentNode->next;
             }
             cout << endl;
@@ -154,8 +157,22 @@ struct LinkedList
 };
 bool hasCycle(ListNode *head)
 {
-    bool result = false;
-    return result;
+    if (head == NULL)
+    {
+        return false;
+    }
+    ListNode *fastLoop = head->next;
+    ListNode *slowLoop = head;
+    while (fastLoop != slowLoop)
+    {
+        if (fastLoop == NULL || fastLoop->next == NULL)
+        {
+            return false;
+        }
+        slowLoop = slowLoop->next;
+        fastLoop = fastLoop->next->next;
+    }
+    return true;
 }
 
 int main()
@@ -164,6 +181,15 @@ int main()
     head.add(3);
     head.printList();
     head.add(2);
+    head.printList();
+    head.add(5);
+    head.add(6);
+    head.printList();
+    head.insertNode(1, 33);
+    head.printList();
+    head.del(4);
+    head.printList();
+    head.updateValue(1, 100);
     head.printList();
     return 0;
 }
