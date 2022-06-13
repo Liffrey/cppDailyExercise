@@ -1,25 +1,23 @@
-//! template version 2.4
-//https://leetcode.com/problems/remove-linked-list-elements/submissions/
-// Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
+//! template version 2.5
+// https://leetcode.com/problems/reverse-linked-list/
+//  Given the head of a singly linked list, reverse the list, and return the reversed list.
 
 // Example 1:
+// Input: head = [1,2,3,4,5]
+// Output: [5,4,3,2,1]
 
-// Input: head = [1,2,6,3,4,5,6], val = 6
-// Output: [1,2,3,4,5]
 // Example 2:
+// Input: head = [1,2]
+// Output: [2,1]
 
-// Input: head = [], val = 1
-// Output: []
 // Example 3:
-
-// Input: head = [7,7,7,7], val = 7
+// Input: head = []
 // Output: []
 
 // Constraints:
 
-// The number of nodes in the list is in the range [0, 104].
-// 1 <= Node.val <= 50
-// 0 <= val <= 50
+// The number of nodes in the list is the range [0, 5000].
+// -5000 <= Node.val <= 5000
 
 // level:easy
 
@@ -128,33 +126,31 @@ struct LinkedList
 
 ListNode *removeElements(ListNode *head, int val)
 {
-    //  x - 1-2-6-3-4-5-6      x = newHead
+    //  x - 1-2-6-3-4-5-6
     //  p - c
-    //      p c
-    //        p c
-    //        p x c
-    //            p c
-    //              p c
-    //                p c
-    //                  x
     ListNode *newHead = new ListNode;
     ListNode *prev, *curr;
     newHead->next = head;
     prev = newHead;
     curr = head;
-    while (curr!=NULL)
+    while (curr != NULL)
     {
-        if(curr->val==val)
+        if (curr->val == val)
         {
             prev->next = curr->next;
         }
-        else 
+        else
         {
             prev = curr;
         }
         curr = curr->next;
     }
     return newHead->next;
+}
+
+ListNode *reverseList(ListNode *head)
+{
+    
 }
 
 int main()
@@ -166,8 +162,7 @@ int main()
     resultNode->next->next->next->next = new ListNode(4);
     resultNode->next->next->next->next->next = new ListNode(5);
     resultNode->next->next->next->next->next->next = new ListNode(6);
-    int val = 6;
-    resultNode = removeElements(resultNode, val);
+    resultNode = reverseList(resultNode);
 
     if (resultNode != NULL)
     {
@@ -178,4 +173,7 @@ int main()
         }
         cout << endl;
     }
+    cout << "Beklenen"
+         << " "
+         << "6-5-4-3-5-2-1";
 }
