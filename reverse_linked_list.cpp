@@ -150,6 +150,10 @@ ListNode *removeElements(ListNode *head, int val)
 
 ListNode *reverseList(ListNode *head)
 {
+    //   1 2 3 4 5 - null
+    //           * 
+    //   
+    //   5 4 3 2 1 - null
     
 }
 
