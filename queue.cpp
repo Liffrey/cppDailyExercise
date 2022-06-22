@@ -85,13 +85,12 @@ int main()
 {
     Queue testQueue;
     testQueue.add(5);
-    testQueue.peek();
     testQueue.add(4);
-    testQueue.peek();
     testQueue.add(12);
+    testQueue.printAllQueue();
     testQueue.peek();
     testQueue.remove();
-    testQueue.printAllQueue();
+    testQueue.peek();
     testQueue.isEmpty();
     return 0;
 }

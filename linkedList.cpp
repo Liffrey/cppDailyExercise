@@ -48,7 +48,7 @@ public:
         }
         cout << pCurrentNode->val << endl;
     };
-    void updateValue(int x, const int &value)
+    void update(int x, const int &value)
     {
         ListNode *pCurrentNode = head;
 
@@ -79,7 +79,7 @@ public:
             pTempNode->next = pCurrentNode;
         }
     };
-    void insertNode(int x, const int &value)
+    void insert(int x, const int &value)
     {
         ListNode *pCurrentNode = head;
         ListNode *pNewNode = new ListNode;
@@ -91,7 +91,7 @@ public:
         pNewNode->next = pCurrentNode->next;
         pCurrentNode->next = pNewNode;
     };
-    void printList()
+    void print()
     {
         ListNode *pCurrentNode = head;
         if (pCurrentNode != NULL)
