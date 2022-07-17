@@ -14,6 +14,12 @@ public:
     //
     int size() const;
     int is_empty() const;
-    void push(const data);
-    void pop();
+    void insert(const data);
+    void erase();
+};
+
+int main()
+{
+
+    return 0;
 }
