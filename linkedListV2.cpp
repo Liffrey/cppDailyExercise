@@ -10,9 +10,24 @@ public:
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
+    ListNode *head;
 
     ~ListNode()
     {
+        ListNode *pDel = head;
+        ListNode *pWalk = head;
+        if (head != NULL)
+        {
+
+            while (pWalk->next != NULL)
+            {
+                pWalk = pWalk->next;
+                delete pDel;
+                pDel = pWalk;
+            }
+            if (pWalk->next == NULL)
+                delete pWalk;
+        }
     }
 };
 
@@ -25,7 +40,7 @@ public:
         ListNode *pNewNode = new ListNode;
         pNewNode->val = value;
         pNewNode->next = NULL;
-        if (head = NULL)
+        if (head == NULL)
         {
             head = pNewNode;
         }
@@ -113,5 +128,19 @@ public:
 
 int main()
 {
+    {
+        LinkedList list;
+        list.add(10);
+        list.add(12);
+        list.add(14);
+        list.print();
+        list.update(2, 100);
+        list.print();
+        list.del(2);
+        list.print();
+        list.get(0);
+        list.insertAfter(1, 200);
+        list.print();
+    }
     return 0;
 }
