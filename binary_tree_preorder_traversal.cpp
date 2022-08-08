@@ -31,9 +31,14 @@ struct TreeNode
     TreeNode() : val(0), left(nullptr), right(nullptr) {}
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+
+    ~TreeNode()
+    {
+    //TODO
+    }
 };
 
-class Solution
+class Traversal
 {
 public:
     vector<int> resultPreorderTraversal;
@@ -81,7 +86,7 @@ public:
 
 int main()
 {
-    Solution tree;
+    Traversal tree;
     vector<int> result;
     TreeNode *root = new TreeNode(1);
     root->left = NULL;
