@@ -28,3 +28,34 @@
 // All the integers of salary are unique.
 
 // level:easy
+
+#include<iostream>
+#include<algorithm>
+#include<vector>
+#include<numeric>
+using namespace std;
+
+
+class Solution {
+public:
+    double average(vector<int>& salary) {
+       /* vector<int>::iterator min_it;
+        vector<int>::iterator max_it*/;
+        double av =0;
+        int sz = salary.size();
+        double min = *min_element(salary.begin(), salary.end());
+        double max = *max_element(salary.begin(), salary.end());
+        double sum = accumulate(salary.begin(), salary.end(), 0);
+        av = (sum - min - max)/(sz-2);
+        return av;
+    }
+};
+
+int main()
+{
+    vector<int> salary = { 48000, 59000, 99000, 13000, 78000, 45000, 31000, 17000, 39000, 37000, 93000, 77000, 33000, 28000, 4000, 54000, 67000, 6000, 1000, 11000 };
+    double result;
+    Solution test;
+    result = test.average(salary);
+    return 0;
+}
