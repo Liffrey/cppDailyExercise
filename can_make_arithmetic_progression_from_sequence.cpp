@@ -28,25 +28,34 @@
 
 using namespace std;
 
-vector<int> SortingFunction(vector<int> &arr)
-{
-    vector<int> result{};
-    return result;
-}
-
 class Solution
 {
 public:
     bool canMakeArithmeticProgression(vector<int> &arr)
     {
         int N = arr.size();
-        //tüm array'deki sayıların arasındaki farkı kontrol et
-        for (;;)
+        // arrayı sırala
+        sort(arr.begin(), arr.end(), greater<int>());
+        // tüm array'deki sayıların arasındaki farkı kontrol et
+        int fark = arr[N] - arr[N - 1];
+        int tempFark{0};
+        for (int i = N; i < 0; i--)
         {
-            //eğer sayı farkları eşitse true 
+            // eğer sayı farkları eşitse true
+            // 1 5 6 7 12 21
+            // 21 12 7 6 5 1 ---> N - (N-1) 21-12 = 9 = temp
+            // fark değeri temp e at
+            // N-1 - N-2 12 - 7 = 5 temp ile karşılastır
+            tempFark = arr[i] - arr[i - 1];
+            if (tempFark != fark)
+            {
+                // fark eşit değilse
+                // değilse false dondur
 
-            //değilse false dondur
+                return false;
+            }
         }
+        return true;
     }
 };
 
