@@ -3,7 +3,7 @@ My daily Leetcode challenges
 
 | Project Started | Last Update | Version |
 | :-------------- | :---------- | :-----: | 
-| 16-Feb-2022     | 01-Oct-2022 | 0.0     |
+| 16-Feb-2022     | 02-Oct-2022 | 0.1     |
 
 # Table of Contents
 - [Daily Exercises](#daily-exercises)
