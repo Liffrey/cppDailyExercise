@@ -32,3 +32,9 @@ https://www.enjoyalgorithms.com/blog/n-ary-tree
 https://medium.com/@snehakweera77/589-n-ary-tree-preorder-traversal-7306f8f0f759
 ```
 
+**word break sorusu için**
+```
+https://wentao-shao.gitbook.io/leetcode/graph-search/139.word-break
+https://www.youtube.com/watch?v=iWenZCZEBIA
+https://github.com/keineahnung2345/leetcode-cpp-practices/blob/master/139.%20Word%20Break.cpp
+```

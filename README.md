@@ -1,9 +1,9 @@
 # Daily Exercises
 My daily Leetcode challenges
 
-| Project Started | Last Update | Version |
-| :-------------- | :---------- | :-----: | 
-| 16-Feb-2022     | 02-Oct-2022 | 0.1     |
+| Project Started | Last Update |
+| :-------------- | :---------- | 
+| 16-Feb-2022     | 24-Oct-2022 |
 
 # Table of Contents
 - [Daily Exercises](#daily-exercises)
