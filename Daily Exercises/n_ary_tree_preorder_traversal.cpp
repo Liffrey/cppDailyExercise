@@ -25,6 +25,7 @@
 
 #include <iostream>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
@@ -53,6 +54,40 @@ class Solution
 public:
     vector<int> preorder(Node *root)
     {
-        
+        vector<int> list{};
+        stack<Node *> pStack;
+
+        if (root == NULL)
+            return list;
+
+        pStack.push(root);
+
+        while (!pStack.empty())
+        {
+            Node *current = pStack.top();
+            pStack.pop();
+
+            list.push_back(current->val);
+
+            for (int i = current->children.size() - 1; i >= 0; i--)
+            {
+                pStack.push(current->children[i]);
+            }
+        }
+        return list;
     }
 };
+
+int main()
+{
+    // Input: root = [1,null,3,2,4,null,5,6]
+    Node* root = new Node(1);
+    root->children.push_back(new Node(3));
+    root->children.push_back(new Node(2));
+    root->children.push_back(new Node(4));
+    root->children[0]->children.push_back(new Node(5));
+    root->children[0]->children.push_back(new Node(6));
+    Solution test;
+    test.preorder(root);
+    return 0;
+}

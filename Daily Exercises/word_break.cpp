@@ -31,7 +31,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <unordered_map>
 #include <algorithm>
 
 using namespace std;
@@ -41,37 +40,46 @@ class Solution
 public:
     bool wordBreak(string s, vector<string> &wordDict)
     {
-        unordered_map<char, int> map;
+        size_t N = s.size();
+        vector<bool> dp(N + 1, false);
 
-        // verilen stringteki harf sayılarını bul
-        for (int i = 0; i < s.size(); i++)
+        dp[N] = true;
+
+        for (int i = N - 1; i >= 0; i--)
         {
-            map[s[i]]++;
-        }
-        // verilen sözlükteki kelimeleri tek tek gez
-        for (int j = 0; j < wordDict.size(); j++)
-        {
-            // her bir kelimenin karakterleri verilen stringte var mı kontrol et
-            for (int k = 0; k < wordDict[j].size(); k++)
+            for (int j = i + 1; j <= N; j++)
             {
-                if (map[wordDict[j][k]] <= 0)
+                if (dp[j] && find(wordDict.begin(), wordDict.end(), s.substr(i, j - i)) != wordDict.end())
                 {
-                    return false;
+                    dp[i] = true;
+                    break;
                 }
-                map[wordDict[j][k]]--;
             }
         }
-
-        return true;
+        return dp[0];
     }
 };
+
 int main()
 {
     Solution test{};
     bool result{false};
-    string s{"leetcode"};
-    vector<string> dict{"leet", "code"};
-    result = test.wordBreak(s, dict);
-    cout << endl;
+    vector<bool> expected{false, true, true, true};
+
+    vector<string> s{"leetcode", "bb", "applepenapple", "catsandog"};
+    vector<string> dict1{"leet", "code"};
+    vector<string> dict2{"a", "b", "bbb", "bbbb"};
+    vector<string> dict3{"apple", "pen"};
+    vector<string> dict4{"cats", "dog", "sand", "and", "cat"};
+
+    vector<vector<string>> dicts{dict4, dict2, dict3, dict1};
+    for (int i = 0; i < dicts.size(); i++)
+    {
+        result = test.wordBreak(s[i], dicts[i]);
+        cout << "beklenen"
+             << "---->" << expected[i] << "  "
+             << "sonuc"
+             << "---->" << result << endl;
+    }
     return 0;
 }
